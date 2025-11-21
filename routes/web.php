@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RssController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,18 @@ Route::prefix('json')->group(function () {
     Route::get('/category/{slug}', [RssController::class, 'jsonFeedCategory'])->name('json.feed.category');
     Route::get('/tag/{slug}', [RssController::class, 'jsonFeedTag'])->name('json.feed.tag');
 });
+
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.index');
+
+Route::prefix('sitemap')->group(function () {
+    Route::get('/posts.xml', [SitemapController::class, 'posts'])->name('sitemap.posts');
+    Route::get('/categories.xml', [SitemapController::class, 'categories'])->name('sitemap.categories');
+    Route::get('/tags.xml', [SitemapController::class, 'tags'])->name('sitemap.tags');
+});
+
+
+
 
     
 
