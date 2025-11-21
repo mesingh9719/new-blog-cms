@@ -96,4 +96,4 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/mesingh9719/new-blog-cms
-cd laravel-news-cms
+cd new-blog-cms
