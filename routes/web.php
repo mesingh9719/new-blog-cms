@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RssController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,14 @@ Route::get('/posts', [PostController::class, 'index'])
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 Route::get('/search', [PostController::class, 'search'])->name('search');
+
+Route::get('/feeds', [RssController::class, 'index'])->name('rss.index');
+Route::get('/feed', [RssController::class, 'posts'])->name('rss.feed');
+Route::get('/feed/categories', [RssController::class, 'categoriesList'])->name('rss.categories');
+Route::get('/feed/category/{slug}', [RssController::class, 'category'])->name('rss.category');
+
+Route::get('/feed/tags', [RssController::class, 'tagsList'])->name('rss.tags');
+Route::get('/feed/tag/{slug}', [RssController::class, 'tag'])->name('rss.tag');
+
+    
+

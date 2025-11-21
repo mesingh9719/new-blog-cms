@@ -66,4 +66,5 @@ class PostController extends Controller
 
         return view('search.index', compact('posts', 'query', 'trending', 'categories'));
     }
+
 }
