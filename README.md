@@ -22,20 +22,18 @@
 
 ## 📌 About the Project
 
-**Laravel News & Blog CMS** is a fully-featured content management system designed to be fast, elegant, and easy to use.  
-It includes a clean Medium-style frontend and a modern Filament-powered admin panel for managing:
+**Laravel News & Blog CMS** is a full-featured Laravel-based content management system with a Medium-style frontend and a clean Filament-powered admin panel.
 
-- Posts  
-- Categories  
-- Tags  
-- Users  
-- SEO metadata  
-- Featured images  
-- Publish scheduling  
-- Trending logic  
-- View tracking  
+It supports:
 
-This project is built as a production-ready portfolio application showcasing modern Laravel development practices, scalable architecture, and polished UI design.
+- Modern editorial publishing  
+- SEO-ready architecture  
+- Responsive TailwindCSS UI  
+- Trending logic with view tracking  
+- Full RSS + JSON feeds  
+- Optimized article structure and clean post pages  
+
+A complete CMS built with production-quality structure and extensibility in mind.
 
 ---
 
@@ -43,40 +41,47 @@ This project is built as a production-ready portfolio application showcasing mod
 
 ### 📰 **Content Management**
 - Create, edit, publish, and schedule posts  
-- Multiple categories per post  
-- Multiple tags per post  
-- Rich text editor (Filament RichEditor)  
-- Auto-slug generation  
-- Auto-published date handling  
-- Custom excerpt  
-- SEO fields (title, description, keywords)  
+- Multiple categories & tags per post  
+- Rich text editing  
+- Auto slugs  
+- Custom excerpts  
+- SEO meta fields  
 
-### 💡 **User & Author System**
-- Multi-user support  
-- Author attribution  
-- Auto-generated author initials  
+### 👤 **User & Author System**
+- Multi-author support  
+- Author pages  
+- Author initials avatar  
 
 ### 🔥 **Trending & Analytics**
-- View tracking  
-- Trending posts calculation  
+- View counter  
+- Trending posts  
 - Recent posts  
-- Featured post section  
 
-### 🎨 **Frontend (Medium Style)**
+### 🎨 **Frontend (Medium Inspired)**
 - Clean typography  
-- White-space driven layout  
-- Sidebar with trending topics  
-- Featured post hero section  
-- Responsive design  
-- TailwindCSS  
-- Optimized image handling  
+- Smooth hover effects  
+- Reading progress bar  
+- Category, tag, and author pages  
+- Dark/Light theme toggle  
 
-### 🛠 **Admin Panel (Filament 3)**
+### 🛠 **Admin Panel (Filament)**
+- Post, Category & Tag CRUD  
+- Media uploads  
+- Filters, search & sorting  
 - Dashboard widgets  
-- CRUD for Posts, Categories, Tags  
-- Media handling  
-- Filters, search, sorting  
-- Permissions-ready structure  
+
+### 📡 **Feeds (RSS + JSON)**
+#### RSS:
+- `/feed`  
+- `/feed/category/{slug}`  
+- `/feed/tag/{slug}`  
+- `/feed/categories`  
+- `/feed/tags`  
+
+#### JSON:
+- `/json/feed`  
+- `/json/category/{slug}`  
+- `/json/tag/{slug}`  
 
 ---
 
@@ -84,7 +89,7 @@ This project is built as a production-ready portfolio application showcasing mod
 
 - **Laravel 12.x**
 - **FilamentPHP 3.x**
-- **TailwindCSS 3.x**
+- **TailwindCSS**
 - **MySQL / MariaDB**
 - **PHP 8.2+**
 
@@ -92,8 +97,9 @@ This project is built as a production-ready portfolio application showcasing mod
 
 ## 🚀 Installation
 
-Clone the repository:
-
 ```bash
 git clone https://github.com/mesingh9719/new-blog-cms
 cd new-blog-cms
+composer install
+cp .env.example .env
+php artisan key:generate

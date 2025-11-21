@@ -70,6 +70,14 @@ class Post extends Model
                      ->where('published_at', '>', now());
     }
 
+    public function getFeaturedImageUrlAttribute()
+    {
+        return $this->featured_image 
+            ? asset('storage/' . $this->featured_image)
+            : null;
+    }
+
+
     protected static function boot()
     {
         parent::boot();

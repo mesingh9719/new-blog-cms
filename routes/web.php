@@ -38,5 +38,11 @@ Route::get('/feed/category/{slug}', [RssController::class, 'category'])->name('r
 Route::get('/feed/tags', [RssController::class, 'tagsList'])->name('rss.tags');
 Route::get('/feed/tag/{slug}', [RssController::class, 'tag'])->name('rss.tag');
 
+Route::prefix('json')->group(function () {
+    Route::get('/feed', [RssController::class, 'jsonFeed'])->name('json.feed');
+    Route::get('/category/{slug}', [RssController::class, 'jsonFeedCategory'])->name('json.feed.category');
+    Route::get('/tag/{slug}', [RssController::class, 'jsonFeedTag'])->name('json.feed.tag');
+});
+
     
 
