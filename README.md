@@ -95,5 +95,5 @@ This project is built as a production-ready portfolio application showcasing mod
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/laravel-news-cms.git
+git clone https://github.com/mesingh9719/new-blog-cms
 cd laravel-news-cms
