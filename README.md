@@ -1,59 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <a href="#" target="_blank">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg"
+             width="320" alt="Laravel Logo">
+    </a>
 </p>
 
-## About Laravel
+<h1 align="center">Laravel News & Blog CMS</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+    A clean, modern, Medium-style News & Blog Content Management System built with Laravel 12, FilamentPHP, and TailwindCSS.
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p align="center">
+    <a href="#"><img src="https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat-square" alt="Laravel Version"></a>
+    <a href="#"><img src="https://img.shields.io/badge/Filament-3.x-0EA5E9?style=flat-square" alt="Filament Version"></a>
+    <a href="#"><img src="https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?style=flat-square" alt="Tailwind CSS"></a>
+    <a href="#"><img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square" alt="License"></a>
+</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 📌 About the Project
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+**Laravel News & Blog CMS** is a fully-featured content management system designed to be fast, elegant, and easy to use.  
+It includes a clean Medium-style frontend and a modern Filament-powered admin panel for managing:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Posts  
+- Categories  
+- Tags  
+- Users  
+- SEO metadata  
+- Featured images  
+- Publish scheduling  
+- Trending logic  
+- View tracking  
 
-## Laravel Sponsors
+This project is built as a production-ready portfolio application showcasing modern Laravel development practices, scalable architecture, and polished UI design.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## ✨ Features
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 📰 **Content Management**
+- Create, edit, publish, and schedule posts  
+- Multiple categories per post  
+- Multiple tags per post  
+- Rich text editor (Filament RichEditor)  
+- Auto-slug generation  
+- Auto-published date handling  
+- Custom excerpt  
+- SEO fields (title, description, keywords)  
 
-## Contributing
+### 💡 **User & Author System**
+- Multi-user support  
+- Author attribution  
+- Auto-generated author initials  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🔥 **Trending & Analytics**
+- View tracking  
+- Trending posts calculation  
+- Recent posts  
+- Featured post section  
 
-## Code of Conduct
+### 🎨 **Frontend (Medium Style)**
+- Clean typography  
+- White-space driven layout  
+- Sidebar with trending topics  
+- Featured post hero section  
+- Responsive design  
+- TailwindCSS  
+- Optimized image handling  
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 🛠 **Admin Panel (Filament 3)**
+- Dashboard widgets  
+- CRUD for Posts, Categories, Tags  
+- Media handling  
+- Filters, search, sorting  
+- Permissions-ready structure  
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🧩 Tech Stack
 
-## License
+- **Laravel 12.x**
+- **FilamentPHP 3.x**
+- **TailwindCSS 3.x**
+- **MySQL / MariaDB**
+- **PHP 8.2+**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🚀 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/laravel-news-cms.git
+cd laravel-news-cms
