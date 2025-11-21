@@ -1,0 +1,117 @@
+<x-layouts.app :title="$category->name">
+
+    <section class="mx-auto mb-12">
+        {{-- Category title --}}
+        <h1 class="text-4xl font-bold article-font mb-3">
+            {{ $category->name }}
+        </h1>
+
+        {{-- Description (optional field later) --}}
+        <p class="text-gray-600 text-lg">
+            Browse the latest posts in the <strong>{{ $category->name }}</strong> category.
+        </p>
+    </section>
+
+    <div class="grid lg:grid-cols-3 gap-12">
+
+        {{-- Posts List --}}
+        <section class="lg:col-span-2 space-y-8">
+            @forelse($posts as $post)
+                <article class="group rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm">
+
+                    <div class="grid md:grid-cols-3">
+                        
+                        {{-- Image --}}
+                        @if($post->featured_image)
+                            <div class="h-40 md:h-full overflow-hidden">
+                                <img src="{{ asset('storage/' . $post->featured_image) }}"
+                                     alt="{{ $post->title }}"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition">
+                            </div>
+                        @endif
+
+                        {{-- Content --}}
+                        <div class="p-6 md:col-span-2">
+
+                            <a href="{{ url('/post/' . $post->slug) }}">
+                                <h2 class="text-2xl font-semibold article-font group-hover:text-blue-600 transition line-clamp-2">
+                                    {{ $post->title }}
+                                </h2>
+                            </a>
+
+                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">
+                                {{ $post->excerpt }}
+                            </p>
+
+                            <div class="flex justify-between text-xs text-gray-500 mt-4">
+                                <span>{{ $post->author->name ?? 'Unknown' }}</span>
+                                <span>{{ $post->published_at?->format('M d, Y') }}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+            @empty
+
+                <p class="text-gray-500">No posts available in this category yet.</p>
+
+            @endforelse
+
+            {{-- Pagination --}}
+            <div class="mt-8">
+                {{ $posts->links() }}
+            </div>
+        </section>
+
+        {{-- Sidebar --}}
+        <aside class="space-y-10">
+
+            {{-- Trending --}}
+            <div class="border border-gray-200 rounded-xl p-6 bg-white shadow-sm">
+                <h3 class="text-xl font-bold mb-4">Trending</h3>
+
+                @foreach($trending as $i => $trend)
+                    <a href="{{ url('/post/' . $trend->slug) }}" 
+                       class="flex gap-3 mb-5 group">
+
+                        <span class="text-gray-300 text-2xl font-bold group-hover:text-blue-600 transition">
+                            {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}
+                        </span>
+
+                        <div>
+                            <p class="font-semibold text-sm line-clamp-2 group-hover:text-blue-600 transition">
+                                {{ $trend->title }}
+                            </p>
+                            <p class="text-xs text-gray-500 mt-1">
+                                {{ $trend->published_at?->format('M d') }}
+                            </p>
+                        </div>
+
+                    </a>
+                @endforeach
+
+            </div>
+
+            {{-- Tags --}}
+            <div class="border border-gray-200 rounded-xl p-6 bg-white shadow-sm">
+                <h3 class="text-xl font-bold mb-4">Popular Tags</h3>
+
+                <div class="flex flex-wrap gap-2">
+                    @foreach($tags as $tag)
+                        <a href="{{ url('/tag/' . $tag->slug) }}"
+                           class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">
+                            #{{ $tag->name }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <div class="mt-16"></div>
+
+</x-layouts.app>
