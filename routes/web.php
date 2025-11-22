@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RssController;
 use App\Http\Controllers\SitemapController;
@@ -30,6 +31,9 @@ Route::get('/posts', [PostController::class, 'index'])
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 Route::get('/search', [PostController::class, 'search'])->name('search');
+
+Route::get('/page/{slug}', [PageController::class, 'show'])
+    ->name('page.show');
 
 Route::get('/feeds', [RssController::class, 'index'])->name('rss.index');
 Route::get('/feed', [RssController::class, 'posts'])->name('rss.feed');

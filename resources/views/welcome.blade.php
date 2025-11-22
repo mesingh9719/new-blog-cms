@@ -1,178 +1,166 @@
 <x-layouts.app>
-      {{-- Hero --}}
-        <section class="mb-12">
-            <h1 class="text-5xl font-bold tracking-tight article-font mb-3">
-                Latest Stories
-            </h1>
-            <p class="text-lg text-gray-600 max-w-2xl">
-                Curated news, insights, and stories from around the world.
-            </p>
+
+    {{-- Hero --}}
+    <section class="mb-12">
+        <h1 class="text-5xl font-bold tracking-tight article-font mb-3 text-gray-900 dark:text-gray-100">
+            Latest Stories
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
+            Curated news, insights, and stories from around the world.
+        </p>
+    </section>
+
+    {{-- Featured Post --}}
+    @if($posts->isNotEmpty())
+        @php $featured = $posts->first(); @endphp
+
+        <section class="mb-16">
+            <article class="group rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm">
+
+                <div class="grid md:grid-cols-2">
+
+                    @if($featured->featured_image)
+                        <div class="h-64 md:h-full overflow-hidden">
+                            <img src="{{ asset('storage/' . $featured->featured_image) }}"
+                                alt="{{ $featured->title }}"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                        </div>
+                    @endif
+
+                    <div class="p-8 flex flex-col justify-center">
+
+                        @if($featured->categories->isNotEmpty())
+                            <span class="inline-block mb-3 px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded">
+                                {{ $featured->categories->first()->name }}
+                            </span>
+                        @endif
+
+                        <a href="/post/{{ $featured->slug }}">
+                            <h2 class="text-3xl font-bold article-font leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 text-gray-900 dark:text-gray-100 transition">
+                                {{ $featured->title }}
+                            </h2>
+                        </a>
+
+                        <p class="text-gray-600 dark:text-gray-400 mt-4">
+                            {{ Str::limit($featured->excerpt, 160) }}
+                        </p>
+
+                        <div class="flex items-center gap-3 mt-6">
+                            <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 flex items-center justify-center font-semibold">
+                                {{ strtoupper(substr($featured->author->name ?? 'U', 0, 1)) }}
+                            </div>
+
+                            <div>
+                                <p class="font-medium text-gray-900 dark:text-gray-100">{{ $featured->author->name ?? 'Unknown' }}</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">
+                                    {{ $featured->published_at?->format('M d, Y') }} · {{ rand(3,7) }} min read
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </article>
         </section>
+    @endif
 
-        {{-- Featured Post --}}
-        @if($posts->isNotEmpty())
-            @php $featured = $posts->first(); @endphp
+    {{-- Content + Sidebar --}}
+    <div class="grid lg:grid-cols-3 gap-12">
 
-            <section class="mb-16">
-                <article class="group rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm">
+        {{-- Recent Posts --}}
+        <section class="lg:col-span-2 space-y-8">
 
-                    <div class="grid md:grid-cols-2">
+            <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Recent Posts</h3>
 
-                        {{-- Image --}}
-                        @if($featured->featured_image)
-                            <div class="h-64 md:h-full overflow-hidden">
-                                <img src="{{ asset('storage/' . $featured->featured_image) }}"
-                                    alt="{{ $featured->title }}"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            @foreach($posts->skip(1)->take(6) as $post)
+                <article class="group rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm">
+
+                    <div class="grid md:grid-cols-3">
+
+                        @if($post->featured_image)
+                            <div class="h-40 md:h-full overflow-hidden">
+                                <img src="{{ asset('storage/' . $post->featured_image) }}"
+                                    alt="{{ $post->title }}"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition" />
                             </div>
                         @endif
 
-                        {{-- Content --}}
-                        <div class="p-8 flex flex-col justify-center">
+                        <div class="p-6 md:col-span-2">
 
-                            {{-- Category --}}
-                            @if($featured->categories->isNotEmpty())
-                                <span class="inline-block mb-3 px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-                                    {{ $featured->categories->first()->name }}
-                                </span>
+                            @if($post->categories->isNotEmpty())
+                                <div class="flex gap-2 mb-2">
+                                    @foreach($post->categories->take(2) as $cat)
+                                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-xs">
+                                            {{ $cat->name }}
+                                        </span>
+                                    @endforeach
+                                </div>
                             @endif
 
-                            {{-- Title --}}
-                            <a href="/post/{{ $featured->slug }}">
-                                <h2 class="text-3xl font-bold article-font leading-tight group-hover:text-blue-600 transition">
-                                    {{ $featured->title }}
-                                </h2>
+                            <a href="/post/{{ $post->slug }}">
+                                <h4 class="text-xl font-semibold article-font group-hover:text-blue-600 dark:group-hover:text-blue-400 text-gray-900 dark:text-gray-100 transition line-clamp-2">
+                                    {{ $post->title }}
+                                </h4>
                             </a>
 
-                            {{-- Excerpt --}}
-                            <p class="text-gray-600 mt-4">
-                                {{ Str::limit($featured->excerpt, 160) }}
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-2 line-clamp-2">
+                                {{ $post->excerpt }}
                             </p>
 
-                            {{-- Author --}}
-                            <div class="flex items-center gap-3 mt-6">
-                                <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-semibold">
-                                    {{ strtoupper(substr($featured->author->name ?? 'U', 0, 1)) }}
-                                </div>
-
-                                <div>
-                                    <p class="font-medium">{{ $featured->author->name ?? 'Unknown' }}</p>
-                                    <p class="text-xs text-gray-500">
-                                        {{ $featured->published_at?->format('M d, Y') }} · {{ rand(3,7) }} min read
-                                    </p>
-                                </div>
+                            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-4">
+                                <span>{{ $post->author->name ?? 'Unknown' }}</span>
+                                <span>{{ $post->published_at?->diffForHumans() }}</span>
                             </div>
 
                         </div>
+
                     </div>
 
                 </article>
-            </section>
-        @endif
+            @endforeach
 
-        {{-- Content + Sidebar --}}
-        <div class="grid lg:grid-cols-3 gap-12">
+        </section>
 
-            {{-- Recent Posts --}}
-            <section class="lg:col-span-2 space-y-8">
+        {{-- Sidebar --}}
+        <aside class="space-y-10">
 
-                <h3 class="text-2xl font-bold mb-4">Recent Posts</h3>
+            <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 bg-white dark:bg-gray-900 shadow-sm">
+                <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Trending Now</h3>
 
-                @foreach($posts->skip(1)->take(6) as $post)
-                    <article class="group rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm">
+                @foreach($trending as $i => $trend)
+                    <a href="/post/{{ $trend->slug }}" class="flex gap-3 mb-5 group">
+                        <span class="text-gray-300 dark:text-gray-600 text-2xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                            {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}
+                        </span>
 
-                        <div class="grid md:grid-cols-3">
-
-                            {{-- Image --}}
-                            @if($post->featured_image)
-                                <div class="h-40 md:h-full overflow-hidden">
-                                    <img src="{{ asset('storage/' . $post->featured_image) }}"
-                                        alt="{{ $post->title }}"
-                                        class="w-full h-full object-cover group-hover:scale-105 transition" />
-                                </div>
-                            @endif
-
-                            {{-- Content --}}
-                            <div class="p-6 md:col-span-2">
-
-                                {{-- Categories --}}
-                                @if($post->categories->isNotEmpty())
-                                    <div class="flex gap-2 mb-2">
-                                        @foreach($post->categories->take(2) as $cat)
-                                            <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
-                                                {{ $cat->name }}
-                                            </span>
-                                        @endforeach
-                                    </div>
-                                @endif
-
-                                {{-- Title --}}
-                                <a href="/post/{{ $post->slug }}">
-                                    <h4 class="text-xl font-semibold article-font group-hover:text-blue-600 transition line-clamp-2">
-                                        {{ $post->title }}
-                                    </h4>
-                                </a>
-
-                                {{-- Excerpt --}}
-                                <p class="text-gray-600 text-sm mt-2 line-clamp-2">
-                                    {{ $post->excerpt }}
-                                </p>
-
-                                {{-- Author + Date --}}
-                                <div class="flex justify-between text-xs text-gray-500 mt-4">
-                                    <span>{{ $post->author->name ?? 'Unknown' }}</span>
-                                    <span>{{ $post->published_at?->diffForHumans() }}</span>
-                                </div>
-
-                            </div>
-
+                        <div>
+                            <p class="font-semibold text-sm text-gray-900 dark:text-gray-100 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                                {{ $trend->title }}
+                            </p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                {{ $trend->published_at?->format('M d') }}
+                            </p>
                         </div>
-
-                    </article>
+                    </a>
                 @endforeach
+            </div>
 
-            </section>
+            <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-6 bg-white dark:bg-gray-900 shadow-sm">
+                <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Popular Topics</h3>
 
-            {{-- Sidebar --}}
-            <aside class="space-y-10">
-
-                {{-- Trending --}}
-                <div class="border border-gray-200 rounded-xl p-6 bg-white shadow-sm">
-                    <h3 class="text-xl font-bold mb-4">Trending Now</h3>
-
-                    @foreach($trending as $i => $trend)
-                        <a href="/post/{{ $trend->slug }}" class="flex gap-3 mb-5 group">
-                            <span class="text-gray-300 text-2xl font-bold group-hover:text-blue-600 transition">
-                                {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}
-                            </span>
-
-                            <div>
-                                <p class="font-semibold text-sm line-clamp-2 group-hover:text-blue-600 transition">
-                                    {{ $trend->title }}
-                                </p>
-                                <p class="text-xs text-gray-500 mt-1">
-                                    {{ $trend->published_at?->format('M d') }}
-                                </p>
-                            </div>
+                <div class="flex flex-wrap gap-2">
+                    @foreach($popularTopics ?? [] as $topic)
+                        <a href="/categories/{{ $topic->slug }}"
+                        class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                            {{ $topic->name }}
                         </a>
                     @endforeach
                 </div>
+            </div>
 
-                {{-- Categories --}}
-                <div class="border border-gray-200 rounded-xl p-6 bg-white shadow-sm">
-                    <h3 class="text-xl font-bold mb-4">Popular Topics</h3>
+        </aside>
 
-                    <div class="flex flex-wrap gap-2">
-                        @foreach($popularTopics ?? [] as $topic)
-                            <a href="/categories/{{ $topic->slug }}"
-                            class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition">
-                                {{ $topic->name }}
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
+    </div>
 
-            </aside>
-
-        </div>
 </x-layouts.app>

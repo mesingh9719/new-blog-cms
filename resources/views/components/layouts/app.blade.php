@@ -13,12 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {{-- Dynamic Title --}}
-    <title>{{ ($title ?? '') ? $title . ' — ' : '' }}{{ config('app.name') }}</title>
+    <title>{{ ($title ?? '') ? $title . ' — ' : '' }}{{ setting('site_name', config('app.name')) }}</title>
 
     {{-- SEO Meta --}}
     <meta name="description" content="{{ $metaDescription ?? config('app.name') }}" />
     <meta name="keywords" content="{{ $metaKeywords }}" />
-    <meta name="author" content="{{ config('app.name') }}" />
+    <meta name="author" content="{{ setting('site_name', config('app.name')) }}" />
 
     {{-- Open Graph --}}
     <meta property="og:title" content="{{ $title ?? config('app.name') }}" />
@@ -34,7 +34,7 @@
 
 
     {{-- Favicon --}}
-    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png" />
+    <link rel="icon" href="{{ setting()->favicon_url }}">
 
     {{-- Fonts --}}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">

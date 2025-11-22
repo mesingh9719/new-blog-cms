@@ -13,7 +13,7 @@ class SitemapController extends Controller
         $xml = view($view, $data)->render();
 
         return response($xml, 200)
-            ->header('Content-Type', 'application/xml')
+            ->header('Content-Type', 'text/xml')
             ->header('X-Content-Type-Options', 'nosniff');
     }
 
