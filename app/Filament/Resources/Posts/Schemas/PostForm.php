@@ -52,6 +52,7 @@ class PostForm
                                     'orderedList',
                                     'codeBlock',
                                     'horizontalRule',
+                                    'attachFiles'
                                 ]),
 
                                  FileUpload::make('featured_image')
@@ -62,7 +63,7 @@ class PostForm
                                 ->imageEditor(),
                         ]),
 
-                        
+
                     ])->columnSpan(8),
 
                     // ------------------------------

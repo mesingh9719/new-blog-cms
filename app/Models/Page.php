@@ -40,4 +40,10 @@ class Page extends Model
     {
         return $this->meta_description ?: Str::limit(strip_tags($this->content), 160);
     }
+
+    public function blocks()
+    {
+        return $this->hasMany(PageBlock::class)->orderBy('position');
+    }
+
 }

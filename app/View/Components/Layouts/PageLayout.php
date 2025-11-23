@@ -2,12 +2,11 @@
 
 namespace App\View\Components\Layouts;
 
-use App\Models\Page;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Header extends Component
+class PageLayout extends Component
 {
     /**
      * Create a new component instance.
@@ -22,9 +21,6 @@ class Header extends Component
      */
     public function render(): View|Closure|string
     {
-        $pages = Page::where('published', true)
-            ->latest()
-            ->get();
-        return view('components.layouts.header',compact('pages'));
+        return view('components.layouts.page-layout');
     }
 }

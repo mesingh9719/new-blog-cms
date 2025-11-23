@@ -37,7 +37,12 @@
                      class="nav-link {{ $activeClass('categories*') }} hover:text-blue-600 dark:hover:text-blue-400">Categories</a>
                  <a href="{{ url('/posts') }}"
                      class="nav-link {{ $activeClass('posts*') }} hover:text-blue-600 dark:hover:text-blue-400">Posts</a>
-
+                    @foreach($pages as $page)
+                     <a href="{{ route('page.show',$page->slug) }}"
+                         class="nav-link {{ $activeClass('pages/' . $page->slug) }} hover:text-blue-600 dark:hover:text-blue-400">
+                         {{ $page->title }}
+                     </a>
+                 @endforeach
              </nav>
 
              {{-- Right controls --}}
